@@ -37,16 +37,7 @@ python app.py
 2. Detect food images from post requests
 
 Built With the help of:
-
 1. Dataset preprocessing: Roboflow ->https://universe.roboflow.com/search?q=food
 2. Hoped Dataset: https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/
 3. Comet: Training Visualizer
 4. calorieninjas: https://calorieninjas.com/api
-   Dataset preprocessing: Roboflow ->https://universe.roboflow.com/search?q=food
-   Hoped Dataset: https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/
-   Comet: Training Visualizer
-   calorieninjas: https://calorieninjas.com/api
-
-```
-
-```
