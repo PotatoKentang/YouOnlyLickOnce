@@ -1,0 +1,19 @@
+#error -> probably because the model etc is in another file when accessing the data
+python train.py \
+--img 640 \
+--batch 16 \
+--epochs 5 \
+--data ../dataset/food_dataset/data.yaml \
+--weights ../models/yolov8x-cls.pt \
+--cache ram
+
+#other ways through cli
+yolo detect train \
+data=./data.yaml \
+model=./models/yolov8x-cls.pt \
+epochs=100 \    
+imgsz=640 \
+cache=True \
+verbose=True
+
+python train.py --img 640 --epochs 3 --data coco128.yaml --weights yolov5s.pt
