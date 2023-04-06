@@ -1,10 +1,7 @@
 import requests
 from flask import Flask, request, jsonify
 from train.train import predict
-<<<<<<< HEAD
-=======
 from utility.links import get_nutrition_by_id
->>>>>>> b2f7cd6b0a0a7f4e47c36fb463af85398a0b61f0
 from utility.error import error_handler
 from werkzeug.utils import secure_filename
 from utility.get_nutrients import get_nutrients
@@ -22,13 +19,8 @@ def home():
     return "Hello World!"
 
 @app.route("/get_nutrients")
-<<<<<<< HEAD
-def get_nutrients_from_query(query):
-    status_code,data = get_nutrients(query)
-=======
 def get_nutrients_from_query():
     status_code,data = get_nutrients("apple")
->>>>>>> b2f7cd6b0a0a7f4e47c36fb463af85398a0b61f0
     if status_code != requests.codes.OK:
         return error_handler("error getting data")
     return data
@@ -48,14 +40,8 @@ def get_food_image_from_post():
     fullpath = os.path.normpath(os.path.join(app.config['UPLOAD_FOLDER'], filename))
     os.makedirs(os.path.dirname(fullpath), exist_ok=True)
     fileUploaded.save(fullpath)
-<<<<<<< HEAD
-    label,img = predict(fullpath)
-    # return jsonify({"label":label,"image":img}), 200
-    return jsonify({"label":label}), 200
-=======
     img,label = predict(fullpath)
     return jsonify({"label":label,"image":img}), 200
->>>>>>> b2f7cd6b0a0a7f4e47c36fb463af85398a0b61f0
 
 
 if __name__ == "__main__":

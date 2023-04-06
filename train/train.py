@@ -1,5 +1,4 @@
 from ultralytics import YOLO
-<<<<<<< HEAD
 from flask import send_file
 import os
 import numpy as np
@@ -11,14 +10,13 @@ filename = os.path.join(dirname, "model/yolov8xk.pt")
 fullPathNorm = os.path.normpath(filename)
 model = YOLO(fullPathNorm)  # load from local path
 # model = YOLO("yolov8x.pt") #load if you don't have a model locally
-=======
+
 import os
 import numpy as np
 from PIL import Image
 import base64
 
-model = YOLO("./yolov8x.pt")  # build from YAML and transfer weights
->>>>>>> b2f7cd6b0a0a7f4e47c36fb463af85398a0b61f0
+model = YOLO("./yolov8x.pt")  # build from YAML and transfer weight
 
 def check_available_gpu():
     import torch
@@ -41,15 +39,11 @@ def predict(imgFile):
         #don't touch this
         res_plotted = result.plot()
         PIL_image = Image.fromarray(res_plotted)
-<<<<<<< HEAD
+
         # io_img = io.BytesIO(PIL_image.tobytes())
         # encoded_image = send_file(io_img, mimetype='image/jpeg')
-    return predicted_class,PIL_image
-=======
-        encoded_image = base64.b64encode(PIL_image.tobytes()).decode("utf-8")
     #delete logic
-    return predicted_class, encoded_image
->>>>>>> b2f7cd6b0a0a7f4e47c36fb463af85398a0b61f0
+    return predicted_class
 
 def train_start():
     #error kemungkinan karena ngeloadnya ke directory lain dimana python gk ngerti .. kebelakang
@@ -68,7 +62,5 @@ def train_start():
 if __name__ == '__main__':
     check_available_gpu()
     train_start()
-<<<<<<< HEAD
-=======
-    
->>>>>>> b2f7cd6b0a0a7f4e47c36fb463af85398a0b61f0
+
+
