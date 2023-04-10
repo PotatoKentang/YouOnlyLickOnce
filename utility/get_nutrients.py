@@ -8,4 +8,4 @@ def get_nutrients(query):
    'X-Api-Key' : get_key(),
   }
   r = requests.get('https://api.calorieninjas.com/v1/nutrition?query='+query, headers=headers)
-  return r.status_code, r.json()
+  return r.json(),r.status_code

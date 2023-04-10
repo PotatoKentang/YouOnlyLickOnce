@@ -1,37 +1,56 @@
 import requests
 from flask import Flask, request, jsonify
 from train.train import predict
-from utility.links import get_nutrition_by_id
 from utility.error import error_handler
 from werkzeug.utils import secure_filename
+from utility.get_ingredients_list import get_ingredients_list
 from utility.get_nutrients import get_nutrients
 from utility.allowed_files import allowed_file
+from flask_cors import CORS
 import os
-UPLOAD_FOLDER = '/data/uploads'
+UPLOAD_FOLDER = 'data/uploads'
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 from dotenv import load_dotenv
 load_dotenv()
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 
 @app.route("/")
 def home():
-    return "Hello World!"
+    return jsonify({"message": "Welcome to the API"}), 200
 
-@app.route("/get_nutrients")
-def get_nutrients_from_query():
-    status_code,data = get_nutrients("apple")
+@app.route("/list_of_ingredients",methods=["POST"])
+def fetch_ingredients_from_searchbar():
+    if request.method != 'POST':
+        return
+    if 'query' not in request.form:
+        return error_handler("no query part")
+    query = request.form['query']
+    data,status_code = get_ingredients_list(query)
     if status_code != requests.codes.OK:
         return error_handler("error getting data")
-    return data
+    return jsonify(data), status_code
+
+@app.route("/get_nutrients",methods=["POST"])
+def get_nutrients_from_query():
+    if request.method != 'POST':
+        return
+    if 'query' not in request.form:
+        return error_handler("no query part")
+    query = request.form['query']
+    data,status_code = get_nutrients(query)
+    if status_code != requests.codes.OK:
+        return error_handler("error getting data")
+    return jsonify(data), status_code
 
 @app.route("/food", methods=["POST"])
 def get_food_image_from_post():
     if request.method != 'POST':
         return
-    if 'file' not in request.files:
+    if 'image' not in request.files:
         return error_handler("no file part")
-    fileUploaded = request.files['file']
+    fileUploaded = request.files['image']
     if fileUploaded.filename == '':
         return error_handler("no selected file")
     if not allowed_file(fileUploaded.filename):

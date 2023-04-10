@@ -41,3 +41,8 @@ Built With the help of:
 2. Hoped Dataset: https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/
 3. Comet: Training Visualizer
 4. calorieninjas: https://calorieninjas.com/api
+
+
+> trained with
+torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0 --extra-index-url https://download.pytorch.org/whl/cu113
+
