@@ -11,12 +11,6 @@ fullPathNorm = os.path.normpath(filename)
 model = YOLO(fullPathNorm)  # load from local path
 # model = YOLO("yolov8x.pt") #load if you don't have a model locally
 
-import os
-import numpy as np
-from PIL import Image
-import base64
-
-model = YOLO("./yolov8x.pt")  # build from YAML and transfer weight
 
 def check_available_gpu():
     import torch
@@ -39,11 +33,9 @@ def predict(imgFile):
         #don't touch this
         res_plotted = result.plot()
         PIL_image = Image.fromarray(res_plotted)
-
-        # io_img = io.BytesIO(PIL_image.tobytes())
-        # encoded_image = send_file(io_img, mimetype='image/jpeg')
+        imageLink = "image link"
     #delete logic
-    return predicted_class
+    return predicted_class,imageLink
 
 def train_start():
     #error kemungkinan karena ngeloadnya ke directory lain dimana python gk ngerti .. kebelakang
