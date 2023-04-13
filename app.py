@@ -1,10 +1,10 @@
 import requests
 from flask import Flask, request, jsonify
-from train.train import predict
 from utility.error import error_handler
 from werkzeug.utils import secure_filename
-from utility.get_ingredients_list import get_ingredients_list
-from utility.get_nutrients import get_nutrients
+from core.get_ingredients_list import get_ingredients_list, get_ingredients_list_by_id
+from core.get_prediction_image import predict_image
+from core.get_nutrients import get_nutrients
 from utility.allowed_files import allowed_file
 from flask_cors import CORS
 import os
@@ -28,6 +28,16 @@ def fetch_ingredients_from_searchbar():
         return error_handler("no query part")
     query = request.form['query']
     data,status_code = get_ingredients_list(query)
+    if status_code != requests.codes.OK:
+        return error_handler("error getting data")
+    return jsonify(data), status_code
+
+
+@app.route("/list_of_ingredients/<id>")
+def fetch_ingredients_information_by_id(id):
+    if request.method != 'GET':
+        return
+    data,status_code = get_ingredients_list_by_id(id)
     if status_code != requests.codes.OK:
         return error_handler("error getting data")
     return jsonify(data), status_code
@@ -59,7 +69,7 @@ def get_food_image_from_post():
     fullpath = os.path.normpath(os.path.join(app.config['UPLOAD_FOLDER'], filename))
     os.makedirs(os.path.dirname(fullpath), exist_ok=True)
     fileUploaded.save(fullpath)
-    img,label = predict(fullpath)
+    img,label = predict_image(fullpath)
     return jsonify({"label":label,"image":img}), 200
 
 
