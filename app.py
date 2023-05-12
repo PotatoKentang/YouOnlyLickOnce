@@ -13,15 +13,16 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 from dotenv import load_dotenv
 load_dotenv()
-cors = CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 
-@app.route("/")
+@app.route("/",methods=["GET","POST"])
 def home():
     return jsonify({"message": "Welcome to the API"}), 200
 
 @app.route("/list_of_ingredients",methods=["POST"])
 def fetch_ingredients_from_searchbar():
+    print("ingredients from searchbar called")
     if request.method != 'POST':
         return
     if 'query' not in request.form:
@@ -33,14 +34,18 @@ def fetch_ingredients_from_searchbar():
     return jsonify(data), status_code
 
 
-@app.route("/list_of_ingredients/<id>")
+@app.route("/list_of_ingredients/<id>",methods=["POST"])
 def fetch_ingredients_information_by_id(id):
-    if request.method != 'GET':
+    print("ingredients from id called")
+    if request.method != 'POST':
         return
-    data,status_code = get_ingredients_list_by_id(id)
+    amount = request.form['amount']
+    unit = request.form['unit']
+    data,status_code = get_ingredients_list_by_id(id,amount,unit)
     if status_code != requests.codes.OK:
         return error_handler("error getting data")
     return jsonify(data), status_code
+
 
 @app.route("/get_nutrients",methods=["POST"])
 def get_nutrients_from_query():
@@ -54,7 +59,7 @@ def get_nutrients_from_query():
         return error_handler("error getting data")
     return jsonify(data), status_code
 
-@app.route("/food", methods=["POST"])
+@app.route("/predict_image", methods=["POST"])
 def get_food_image_from_post():
     if request.method != 'POST':
         return

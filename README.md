@@ -34,8 +34,8 @@ python app.py
 ## 📍 End Point
 
 > 1. /: GET endpoint that returns a welcome message.
-> 2. /list_of_food: POST endpoint that receives a search query as input and returns a list of ingredients that match the query.
-> 3. /list_of_food/<id>: GET endpoint that receives an ingredient ID as input and returns information about the corresponding ingredient.
+> 2. /list_of_ingredients: POST endpoint that receives a search query as input and returns a list of ingredients that match the query.
+> 3. /list_of_food/<id>: POST endpoint that receives an ingredient ID as input and returns information about the corresponding ingredient.
 > 4. /get_nutrients: POST endpoint that receives a food query as input and returns the nutritional information of the corresponding food.
 > 5. /predict_food: POST endpoint that receives an image file as input and returns the predicted label and image.
 
