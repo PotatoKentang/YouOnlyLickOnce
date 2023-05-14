@@ -2,3 +2,4 @@ train/datasets/
 train/data.yaml
 train/yolov8x.pt
 train/model/yolov8xk.pt
+model/
