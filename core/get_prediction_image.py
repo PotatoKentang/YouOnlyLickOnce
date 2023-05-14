@@ -6,7 +6,7 @@ from PIL import Image
 import io
 
 dirname = os.path.dirname(__file__)
-filename = os.path.join(dirname,"../model/yoloTrained1.pt")
+filename = os.path.join(dirname,"../model/yoloTrained5.pt")
 fullPathNorm = os.path.normpath(filename)
 model = YOLO(fullPathNorm)
 # model = YOLO("yolov8x.pt") #load if you don't have a model locally
@@ -35,7 +35,7 @@ def predict_image(imgFile):
         PIL_image = Image.fromarray(res_plotted)
         imageLink = "image link"
     #delete logic
-    return predicted_class,imageLink
+        return predicted_class,imageLink
 
 
 if __name__ == '__main__':

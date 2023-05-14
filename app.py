@@ -39,6 +39,10 @@ def fetch_ingredients_information_by_id(id):
     print("ingredients from id called")
     if request.method != 'POST':
         return
+    if 'amount' not in request.form:
+        return error_handler("no amount part")
+    if 'unit' not in request.form:
+        return error_handler("no unit part")
     amount = request.form['amount']
     unit = request.form['unit']
     data,status_code = get_ingredients_list_by_id(id,amount,unit)
