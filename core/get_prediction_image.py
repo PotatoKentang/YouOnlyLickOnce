@@ -24,7 +24,7 @@ def check_available_gpu():
 food_map = {
     'ayam': 'chicken',
     'blueberry-muffin': 'blueberry muffin',
-    'bubur': 'porridge',
+    'bubur': 'a bowl of porridge',
     'burger': 'burger',
     'chocolate-chip-cookie': 'chocolate chip cookie',
     'croissant': 'croissant',
@@ -39,8 +39,8 @@ food_map = {
     'macaroni-cheese': 'macaroni and cheese',
     'martabak-manis': 'sweet martabak',
     'mie-ayam': 'chicken noodle',
-    'nasi-goreng': 'fried rice',
-    'nasi-putih': 'white rice',
+    'nasi-goreng': 'a plate of fried rice',
+    'nasi-putih': 'a bowl of white rice',
     'onde-onde': 'onde-onde',
     'pancake': 'pancake',
     'pempek': 'pempek',
@@ -61,7 +61,7 @@ food_map = {
     'sushi-nigiri': 'nigiri sushi',
     'telur-balado': 'spicy fried egg',
     'telur-dadar': 'omelette',
-    'telur-mata-sapi': 'sunny-side-up egg'
+    'telur-mata-sapi': 'sunny sideup egg'
 }
 
 def predict_image(imgFile):
