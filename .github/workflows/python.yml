@@ -68,4 +68,4 @@ jobs:
           app-name: 'you-only-lick-once'
           slot-name: 'production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E4A7D179A5AA40738C3FA6CE055C9B9E }}
-          startup-command: 'gunicorn app:app'
+        run: python app.py
