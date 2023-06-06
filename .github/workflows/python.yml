@@ -47,7 +47,7 @@ jobs:
     environment:
       name: 'production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
+    
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
@@ -68,4 +68,3 @@ jobs:
           app-name: 'you-only-lick-once'
           slot-name: 'production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E4A7D179A5AA40738C3FA6CE055C9B9E }}
-        run: python app.py
