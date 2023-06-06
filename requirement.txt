@@ -3,4 +3,8 @@ ultralytics
 waitress
 requests
 python-dotenv
+<<<<<<< HEAD
 flask-cors
+=======
+flask-cors
+>>>>>>> ebc6270c23692be6defca00669fa32c260254bec

@@ -1,10 +1,18 @@
 import requests
 from flask import Flask, request, jsonify
+<<<<<<< HEAD
 from utility.error import error_handler
 from werkzeug.utils import secure_filename
 from core.get_ingredients_list import get_ingredients_list, get_ingredients_list_by_id
 from core.get_prediction_image import predict_image
 from core.get_nutrients import get_nutrients
+=======
+from train.train import predict
+from utility.error import error_handler
+from werkzeug.utils import secure_filename
+from utility.get_ingredients_list import get_ingredients_list
+from utility.get_nutrients import get_nutrients
+>>>>>>> ebc6270c23692be6defca00669fa32c260254bec
 from utility.allowed_files import allowed_file
 from flask_cors import CORS
 import os
@@ -13,7 +21,11 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 from dotenv import load_dotenv
 load_dotenv()
+<<<<<<< HEAD
 CORS(app, resources={r"/*": {"origins": "*"}})
+=======
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
+>>>>>>> ebc6270c23692be6defca00669fa32c260254bec
 
 
 @app.route("/",methods=["GET","POST"])
@@ -22,7 +34,10 @@ def home():
 
 @app.route("/list_of_ingredients",methods=["POST"])
 def fetch_ingredients_from_searchbar():
+<<<<<<< HEAD
     print("ingredients from searchbar called")
+=======
+>>>>>>> ebc6270c23692be6defca00669fa32c260254bec
     if request.method != 'POST':
         return
     if 'query' not in request.form:
@@ -32,6 +47,21 @@ def fetch_ingredients_from_searchbar():
     if status_code != requests.codes.OK:
         return error_handler("error getting data")
     return jsonify(data), status_code
+<<<<<<< HEAD
+=======
+
+@app.route("/get_nutrients",methods=["POST"])
+def get_nutrients_from_query():
+    if request.method != 'POST':
+        return
+    if 'query' not in request.form:
+        return error_handler("no query part")
+    query = request.form['query']
+    data,status_code = get_nutrients(query)
+    if status_code != requests.codes.OK:
+        return error_handler("error getting data")
+    return jsonify(data), status_code
+>>>>>>> ebc6270c23692be6defca00669fa32c260254bec
 
 
 @app.route("/list_of_ingredients/<id>",methods=["POST"])
@@ -78,7 +108,11 @@ def get_food_image_from_post():
     fullpath = os.path.normpath(os.path.join(app.config['UPLOAD_FOLDER'], filename))
     os.makedirs(os.path.dirname(fullpath), exist_ok=True)
     fileUploaded.save(fullpath)
+<<<<<<< HEAD
     img,label = predict_image(fullpath)
+=======
+    img,label = predict(fullpath)
+>>>>>>> ebc6270c23692be6defca00669fa32c260254bec
     return jsonify({"label":label,"image":img}), 200
 
 
