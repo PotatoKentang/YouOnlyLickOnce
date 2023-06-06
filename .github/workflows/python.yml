@@ -58,7 +58,7 @@ jobs:
       - name: Login via Azure CLI
         uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          creds: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E4A7D179A5AA40738C3FA6CE055C9B9E }}
           allow-no-subscriptions: true
 
       - name: 'Deploy to Azure Web App'
