@@ -82,6 +82,6 @@ def get_food_image_from_post():
     return jsonify({"label":label,"image":img}), 200
 
 
-def app():
+if __name__ == "__main__":
     from waitress import serve
     serve(app, host="0.0.0.0")
