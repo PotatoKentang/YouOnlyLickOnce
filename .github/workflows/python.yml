@@ -55,11 +55,11 @@ jobs:
           name: python-app
           path: .
 
-      - name: Login via Azure CLI
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E4A7D179A5AA40738C3FA6CE055C9B9E }}
-          allow-no-subscriptions: true
+      # - name: Login via Azure CLI
+      #   uses: azure/login@v1
+      #   with:
+      #     creds: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E4A7D179A5AA40738C3FA6CE055C9B9E }}
+      #     allow-no-subscriptions: true
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
@@ -67,5 +67,5 @@ jobs:
         with:
           app-name: 'you-only-lick-once'
           slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_5ea154f99e9c45d0b59d34ee70f3f898 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E4A7D179A5AA40738C3FA6CE055C9B9E }}
           startup-command: 'gunicorn app:app'
