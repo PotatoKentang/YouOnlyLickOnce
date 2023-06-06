@@ -47,19 +47,13 @@ jobs:
     environment:
       name: 'production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    
+
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
           name: python-app
           path: .
-
-      # - name: Login via Azure CLI
-      #   uses: azure/login@v1
-      #   with:
-      #     creds: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E4A7D179A5AA40738C3FA6CE055C9B9E }}
-      #     allow-no-subscriptions: true
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
