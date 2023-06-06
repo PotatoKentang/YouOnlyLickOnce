@@ -21,6 +21,48 @@ def check_available_gpu():
     print(torch.cuda.current_device())
     print("finished checking cuda")
 
+food_map = {
+    'ayam': 'chicken',
+    'blueberry-muffin': 'blueberry muffin',
+    'bubur': 'porridge',
+    'burger': 'burger',
+    'chocolate-chip-cookie': 'chocolate chip cookie',
+    'croissant': 'croissant',
+    'doughnut': 'doughnut',
+    'es-pisang-ijo': 'green banana ice',
+    'french-fries': 'French fries',
+    'ikan-goreng': 'fried fish',
+    'kacang-mete': 'cashew nuts',
+    'kangkung': 'water spinach',
+    'klepon': 'klepon',
+    'kopi-hitam': 'black coffee',
+    'macaroni-cheese': 'macaroni and cheese',
+    'martabak-manis': 'sweet martabak',
+    'mie-ayam': 'chicken noodle',
+    'nasi-goreng': 'fried rice',
+    'nasi-putih': 'white rice',
+    'onde-onde': 'onde-onde',
+    'pancake': 'pancake',
+    'pempek': 'pempek',
+    'pizza': 'pizza',
+    'red-velvet': 'red velvet',
+    'rendang': 'rendang',
+    'roti-slice': 'bread slice',
+    'salad': 'salad',
+    'salmon': 'salmon',
+    'sate': 'satay',
+    'sayur-asem': 'tamarind soup',
+    'seafood': 'seafood',
+    'semangka': 'watermelon',
+    'soto-ayam': 'chicken soup',
+    'spaghetti-bolognese': 'spaghetti bolognese',
+    'steak': 'steak',
+    'sushi-makizushi': 'sushi roll',
+    'sushi-nigiri': 'nigiri sushi',
+    'telur-balado': 'spicy fried egg',
+    'telur-dadar': 'omelette',
+    'telur-mata-sapi': 'sunny-side-up egg'
+}
 
 def predict_image(imgFile):
     # Inference
@@ -28,7 +70,7 @@ def predict_image(imgFile):
     img = np.array(img)  # numpy array
     results = model(img,conf=0.15,boxes=True)  # list of Results objects
     for result in results:
-        predicted_class = [model.names[int(classIndex)] for classIndex in result.boxes.cls]
+        predicted_class = [food_map.get(model.names[int(classIndex)]) for classIndex in result.boxes.cls]
         # print(predicted_class)
         #don't touch this
         res_plotted = result.plot()
