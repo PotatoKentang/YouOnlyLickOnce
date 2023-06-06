@@ -1,0 +1,6 @@
+Flask==2.2.0
+ultralytics
+waitress
+requests
+python-dotenv
+flask-cors
