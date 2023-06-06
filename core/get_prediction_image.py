@@ -6,7 +6,7 @@ from PIL import Image
 import io
 
 dirname = os.path.dirname(__file__)
-filename = os.path.join(dirname,"../model/yoloTrained5.pt")
+filename = os.path.join(dirname,"../model/yoloTrained.pt")
 fullPathNorm = os.path.normpath(filename)
 model = YOLO(fullPathNorm)
 # model = YOLO("yolov8x.pt") #load if you don't have a model locally
@@ -26,7 +26,7 @@ def predict_image(imgFile):
     # Inference
     img = Image.open(imgFile)  # PIL image
     img = np.array(img)  # numpy array
-    results = model(img,boxes=True)  # list of Results objects
+    results = model(img,conf=0.15,boxes=True)  # list of Results objects
     for result in results:
         predicted_class = [model.names[int(classIndex)] for classIndex in result.boxes.cls]
         # print(predicted_class)
